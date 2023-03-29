@@ -1,19 +1,25 @@
 package Commands.ConcreteCommands;
 
 import Commands.Receiver;
-import Commands.interfase.command;
+import Commands.interfase.Command;
 
 /**
  * Class for the team that exits the program
  */
-public class Exit implements command {
+public class Exit implements Command {
     private final Receiver receiver;
+
+    /**
+     * Method for
+     * @param receiver receiver
+     */
     public Exit(Receiver receiver){
         this.receiver=receiver;
     }
 
     /**
-     * @param args
+     * Method execute
+     * @param args arg
      */
     @Override
     public void execute(String[] args){
@@ -23,6 +29,9 @@ public class Exit implements command {
         receiver.Exit();
     }
 
+    /**
+     * Method with information
+     */
     @Override
     public void Information(){
         System.out.println("Команда exit - завершение программы.");

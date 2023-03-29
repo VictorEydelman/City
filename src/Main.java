@@ -1,4 +1,5 @@
 /**
+ * City
  * @author Viktor Eydelman
  */
 
@@ -12,9 +13,15 @@ import Commands.*;
  */
 
 public class Main {
+    /**
+     * Main-Method
+     * @param args Argument of command line
+     * @throws IOException mistake
+     * @throws ParseException mistake
+     */
     public static void main(String[] args) throws IOException, ParseException {
         CSVParser csvparser = new CSVParser(args);
-        csvparser.creationTree();
+        Receiver.creationTree();
         csvparser.Reader(args);
         CommandManager comm=new CommandManager();
         comm.start();

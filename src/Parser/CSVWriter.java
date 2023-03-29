@@ -13,7 +13,7 @@ import java.util.Map;
 public class CSVWriter {
     /**
      * Method for writing a collection to a file
-     * @param map
+     * @param map collection
      */
     public static void Writer(Map<Integer,City> map){
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(CSVParser.getfile().toFile()))) {

@@ -1,5 +1,7 @@
 package Parser;
 import Collections.*;
+import Commands.Reader.Reader;
+import Commands.Receiver;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -10,34 +12,28 @@ import java.time.ZonedDateTime;
 import java.util.*;
 
 /**
- * Класс отвечающий за чтение CSV файла, парсинг из него.
+ * Class of reading CSV fail and parse
  */
 
 public class CSVParser {
     final String[] args;
-    private static Map<Integer, City> map;
-    private static ZonedDateTime creationDate;
+
     private static Path fileName;
 
+    /**
+     * Method for
+     * @param args argument
+     */
     public CSVParser(String[] args) {
         this.args = args;
     }
 
-    /**
-     * Method for determining the time of collection creation
-     */
-    public static void creationTree(){
-        if (map==null){
-            creationDate=ZonedDateTime.now();
-        }
-        map=new TreeMap<>();
-    }
 
     /**
-     *
-     * @param arg
-     * @throws IOException
-     * @throws ParseException
+     * Method for reading file
+     * @param arg arg
+     * @throws IOException mistake
+     * @throws ParseException mistake
      */
     public static void Reader(String[] arg) throws IOException, ParseException {
         String file="";
@@ -53,11 +49,17 @@ public class CSVParser {
         }
         Parse(fileName);
     }
+
+    /**
+     * Method for Parse CSV file
+     * @param fileName name of file
+     * @throws IOException mistake
+     * @throws ParseException mistake
+     */
     public static void Parse(Path fileName) throws IOException, ParseException {
-        //String file2 = "C:\Users\veyde\OneDrive\Документы\Работы ИТМО\\Программирование\\City\\file.csv";
-        //fileName =Path.of(file2);
         FileInputStream input = new FileInputStream(fileName.toFile());
         InputStreamReader reader = new InputStreamReader(input, StandardCharsets.UTF_8);
+        Map<Integer,City> map = Receiver.getmap();
         int i;
         String line = "";
         String[] line1;
@@ -70,12 +72,11 @@ public class CSVParser {
             if (point =='\n') {
                 if (t) {
                     String creation=String.valueOf(LocalDate.now());
-                    line+=","+creation;
+                    line += ","+creation;
                     line1 = line.split(",");
                     int key = Integer.parseInt(line1[0]);
                     line1[0] = Integer.toString(map.size()+1);
-                    //System.out.println(line);
-                    Work_with_TreeMap.Add_to_TreeMap(map, key, line1);
+                    WorkWithTreeMap.AddToTreeMap(map, key, line1);
                 }
                 t=true;
                 line = "";
@@ -86,35 +87,13 @@ public class CSVParser {
         line1 = line.split(",");
         int key = Integer.parseInt(line1[0]);
         line1[0] = Integer.toString(map.size()+1);
-        Work_with_TreeMap.Add_to_TreeMap(map, key, line1);
+        WorkWithTreeMap.AddToTreeMap(map, key, line1);
     }
 
-    public static String getName(){
-        return map.getClass().getName();
-    }
-
-    public static ZonedDateTime getcreatTime(){
-        return creationDate;
-    }
-
-    public static int getsize(){
-        return map.size();
-    }
-
-    public static String getAllElements(){
-        String list="";
-        for (Map.Entry<Integer,City> entry:map.entrySet()) {
-            list += entry.getKey() + " = ";
-            list += entry.getValue();
-            list += '\n';
-        }
-        return list;
-    }
-
-    public static Map<Integer,City> getmap(){
-        return map;
-    }
-
+    /**
+     * Method for getting file name
+     * @return fileName
+     */
     public static Path getfile(){
         return fileName;
     }

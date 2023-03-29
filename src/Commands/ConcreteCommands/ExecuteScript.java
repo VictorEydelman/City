@@ -1,7 +1,7 @@
 package Commands.ConcreteCommands;
 
 import Commands.Receiver;
-import Commands.interfase.command;
+import Commands.interfase.Command;
 
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
@@ -9,15 +9,20 @@ import java.nio.file.NoSuchFileException;
 /**
  * Class for a command that reads commands from a specified file and sends them for execution
  */
-public class Execute_script_file_name implements command {
+public class ExecuteScript implements Command {
     private final Receiver receiver;
-    public Execute_script_file_name(Receiver receiver){
+
+    /**
+     * Method for
+     * @param receiver receiver
+     */
+    public ExecuteScript(Receiver receiver){
         this.receiver=receiver;
     }
 
     /**
-     * @param args
-     * @throws IOException
+     * Method execute
+     * @param args arg
      */
     @Override
     public void execute(String[] args) throws IOException {
@@ -34,6 +39,9 @@ public class Execute_script_file_name implements command {
         }
     }
 
+    /**
+     * Method with information
+     */
     @Override
     public void Information(){
         System.out.println("Команда execute_script - она позволяет считывать команды из файла. Формат ввода: execute_script file_name");

@@ -1,19 +1,25 @@
 package Commands.ConcreteCommands;
 
 import Commands.Receiver;
-import Commands.interfase.command;
+import Commands.interfase.Command;
 
 /**
  * Class for a command that saves a collection to a file
  */
-public class Save implements command {
+public class Save implements Command {
     private final Receiver receiver;
+
+    /**
+     * Method for
+     * @param receiver receiver
+     */
     public Save(Receiver receiver){
         this.receiver=receiver;
     }
 
     /**
-     * @param args
+     * Method execute
+     * @param args arg
      */
     @Override
     public void execute(String[] args){
@@ -23,6 +29,9 @@ public class Save implements command {
         receiver.Save();
     }
 
+    /**
+     * Method with information
+     */
     @Override
     public void Information(){
         System.out.println("Команда save - сохранить коллекцию в файл.");

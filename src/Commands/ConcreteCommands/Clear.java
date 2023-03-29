@@ -1,19 +1,25 @@
 package Commands.ConcreteCommands;
 
 import Commands.Receiver;
-import Commands.interfase.command;
+import Commands.interfase.Command;
 
 /**
  * Class for a command that deletes all elements of a collection
  */
-public class Clear implements command {
+public class Clear implements Command {
     private final Receiver receiver;
+
+    /**
+     * Method for
+     * @param receiver receiver
+     */
     public Clear(Receiver receiver){
         this.receiver=receiver;
     }
 
     /**
-     * @param args
+     * Method execute
+     * @param args arg
      */
     @Override
     public void execute(String[] args){
@@ -23,6 +29,9 @@ public class Clear implements command {
         receiver.Clear();
     }
 
+    /**
+     * Method with information
+     */
     @Override
     public void Information(){
         System.out.println("Команда clear - удаляет все элементы коллекции.");

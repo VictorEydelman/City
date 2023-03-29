@@ -1,19 +1,25 @@
 package Commands.ConcreteCommands;
 
 import Commands.Receiver;
-import Commands.interfase.command;
+import Commands.interfase.Command;
 
 /**
  * Class for a command that outputs information about a collection
  */
-public class Info implements command {
+public class Info implements Command {
     private final Receiver receiver;
+
+    /**
+     * Method for
+     * @param receiver receiver
+     */
     public Info(Receiver receiver){
         this.receiver=receiver;
     }
 
     /**
-     * @param args
+     * Method execute
+     * @param args arg
      */
     @Override
     public void execute(String[] args){
@@ -23,6 +29,9 @@ public class Info implements command {
         receiver.Info();
     }
 
+    /**
+     * Method with information
+     */
     @Override
     public void Information(){
         System.out.println("Команда info - получить информацию по коллекции.");
